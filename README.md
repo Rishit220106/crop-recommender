@@ -2,7 +2,7 @@
 
 A smart web application that recommends the most suitable crop to grow based on soil and weather conditions using a trained Machine Learning model.
 
-![Crop Recommendation Screenshot](static/images/default_img.jpg)
+
 
 ---
 
@@ -22,9 +22,28 @@ A smart web application that recommends the most suitable crop to grow based on 
 - **Frontend**: HTML5, CSS3, Bootstrap 5
 - **Machine Learning**: scikit-learn, pandas, numpy
 - **Visualization**: Crop image display
-- **Deployment**: (Optional) Render, PythonAnywhere, Heroku
 
 ---
+
+Model: `RandomForestClassifier`  
+Preprocessing: `MinMaxScaler`, `StandardScaler`
+
+## 📷 Web Interface
+
+- Built using Flask and HTML/CSS
+- Inputs taken through a simple form
+- Displays crop prediction with corresponding image
+- Uses a default placeholder if no image exists for prediction
+
+## 🖼 Example
+
+## 🧪 Requirements
+
+Install dependencies with:
+
+```bash
+pip install -r requirements.txt
+
 
 ## 📥 Setup Instructions
 
