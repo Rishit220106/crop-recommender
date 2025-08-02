@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+env/
+ENV/
+*.egg-info/
+
+# PyCharm-specific
+.idea/
+*.iml
+
+# Model and scaler files (optional: ignore if large or private)
+*.pkl
+
+# Output and generated files
+*.jpg
+*.png
+*.csv
+*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs or debug output
+*.log
