@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crop Recommendation System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #d1f2eb, #f9fbe7);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    .form-box {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background-color: #43a047;
+      border-color: #43a047;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #388e3c;
+    }
+
+    .card {
+      margin: 30px auto 0;
+      background-color: #f1f8e9;
+      border: none;
+      text-align: center;
+      width: 24rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 140px;
+      margin: 20px auto 0;
+    }
+
+    .card-title {
+      color: #2e7d32;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 1.2rem;
+    }
+
+    ul.list-group {
+      margin-top: 15px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">🌾 AgroRecommender</a>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <div class="container">
+    <div class="form-box">
+      <h1>Crop Recommendation System 🌱</h1>
+      <form action="/predict" method="POST">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="Nitrogen">Nitrogen</label>
+            <input type="number" class="form-control" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" required>
+          </div>
+          <div class="col-md-4">
+            <label for="Phosporus">Phosphorus</label>
+            <input type="number" class="form-control" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus" required>
+          </div>
+          <div class="col-md-4">
+            <label for="Potassium">Potassium</label>
+            <input type="number" class="form-control" id="Potassium" name="Potassium" placeholder="Enter Potassium" required>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="col-md-4">
+            <label for="Temperature">Temperature (°C)</label>
+            <input type="number" step="0.01" class="form-control" id="Temperature" name="Temperature" placeholder="e.g. 25.3" required>
+          </div>
+          <div class="col-md-4">
+            <label for="Humidity">Humidity (%)</label>
+            <input type="number" step="0.01" class="form-control" id="Humidity" name="Humidity" placeholder="e.g. 65.5" required>
+          </div>
+          <div class="col-md-4">
+            <label for="pH">pH</label>
+            <input type="number" step="0.01" class="form-control" id="pH" name="pH" placeholder="e.g. 6.7" required>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="col-md-4">
+            <label for="Rainfall">Rainfall (mm)</label>
+            <input type="number" step="0.01" class="form-control" id="Rainfall" name="Rainfall" placeholder="e.g. 120.5" required>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary">Get Recommendation</button>
+        </div>
+      </form>
+
+{% if crop_name %}
+<div class="card mt-5 shadow">
+  <img src="{{ url_for('static', filename='default_img.png') }}"
+     class="card-img-top"
+     alt="{{ crop_name }}">
+
+  <div class="card-body">
+    <h5 class="card-title">🌾 Recommended Crop</h5>
+    <p class="card-text fs-3 fw-semibold text-success">{{ crop_name | capitalize }}</p>
+    <p class="card-text text-muted">{{ result }}</p>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>🌡️ Ideal Temperature:</strong> {{ info.temperature }}</li>
+      <li class="list-group-item"><strong>💧 Preferred Humidity:</strong> {{ info.humidity }}</li>
+      <li class="list-group-item"><strong>🧪 Soil pH Range:</strong> {{ info.ph }}</li>
+      <li class="list-group-item"><strong>🪴 Suitable Soil:</strong> {{ info.soil }}</li>
+      <li class="list-group-item"><strong>💡 Cultivation Tip:</strong> {{ info.tip }}</li>
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
