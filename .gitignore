@@ -16,8 +16,6 @@ ENV/
 .idea/
 *.iml
 
-# Model and scaler files (optional: ignore if large or private)
-*.pkl
 
 
 
