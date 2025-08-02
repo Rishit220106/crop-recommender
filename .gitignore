@@ -19,11 +19,7 @@ ENV/
 # Model and scaler files (optional: ignore if large or private)
 *.pkl
 
-# Output and generated files
-*.jpg
-*.png
-*.csv
-*.json
+
 
 # OS files
 .DS_Store
